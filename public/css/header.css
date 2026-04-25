@@ -1,0 +1,166 @@
+.dfy-header{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#fff;
+  border-bottom:1px solid #e9e9e9
+}
+
+.dfy-topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px 16px;
+  gap:12px;
+}
+
+.dfy-brand{
+  display:flex;
+  align-items:center;gap:10px;
+  color:#111;
+  text-decoration:none;
+  font-weight:700;
+  font-size:20px
+}
+
+.dfy-brand img{
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.dfy-right{
+  display:flex;
+  align-items:center;
+  gap:12px
+}
+
+.dfy-user{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 10px;
+  border:1px solid #ddd;
+  border-radius:999px;
+  text-decoration:none;
+  color:#333
+}
+
+.dfy-user:hover{
+  background:#f6f6f6
+}
+
+.dfy-avatar{
+  width:22px;
+  height:22px;
+  border-radius:50%;
+  background:#ddd;
+  display:inline-block
+}
+
+.dfy-login{
+  padding:6px 10px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  text-decoration:none;
+  color:#333
+}
+
+
+.dfy-login:hover{
+  background:#f6f6f6
+}
+
+.dfy-menu-btn{
+  display:none;
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:6px 10px;
+  background:#fff
+}
+
+/* Bottom nav centered */
+.dfy-botnav{
+  display:flex;
+  gap:18px;
+  justify-content:center;
+  border-top:1px solid #f0f0f0;
+  padding:8px 12px;
+  background:#000000}
+
+.dfy-botnav a{
+  text-decoration:none;
+  color:#ddd;
+  padding:8px 50px;
+  border-radius:8px
+}
+
+.dfy-botnav a:hover{
+  background:#333
+}
+
+/* Icon cart */
+.icon-cart {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.icon-cart span {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: black;
+  color: white;
+  font-size: 14px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Mobile */
+@media(max-width:768px){
+  .dfy-brand img {
+    max-width: 180px;
+  }
+
+  .dfy-user, .dfy-login {
+    font-size: 14px;
+    padding: 4px 8px;
+  }
+
+  .icon-cart img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .icon-cart span {
+    font-size: 12px;
+    width: 18px;
+    height: 18px;
+    top: -4px;
+    right: -4px;
+  }
+
+
+  .dfy-menu-btn{
+    display:inline-block
+  }
+
+  .dfy-botnav{
+    display:none;
+    flex-direction:column;
+    align-items:stretch;
+    gap:0
+  }
+
+  .dfy-botnav a{
+    padding:12px 14px;
+    border-radius:0
+  }
+  
+  .dfy-botnav.open{
+    display:flex
+  }
+}

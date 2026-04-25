@@ -7,10 +7,18 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
-        return view('products.index', compact('products'));
+        $search = $request->get('search');
+
+        $products = Product::query()
+            ->when($search, function ($query, $search) {
+                return $query->where('product_name', 'like', '%' . $search . '%')
+                         ->orWhere('product_description', 'like', '%' . $search . '%');
+                })
+                ->get();
+
+        return view('products.index', compact('products', 'search'));
     }
 
     public function show(Product $product)
@@ -18,3 +26,4 @@ class ProductController extends Controller
         return view('products.show', compact('product'));
     }
 }
+ 

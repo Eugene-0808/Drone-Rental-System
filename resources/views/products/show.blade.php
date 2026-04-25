@@ -5,7 +5,7 @@
 @section('content')
 <div class="product-detail-page">
     <div class="detail-container">
-        <img src="{{ $product->product_image }}" alt="{{ $product->product_name }}">
+        <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_name }}">
         <div class="detail-info">
             <h2>{{ $product->product_name }}</h2>
             <p>{{ $product->product_description }}</p>

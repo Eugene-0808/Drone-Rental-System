@@ -13,7 +13,7 @@
     <!-- Header -->
     <div class="header">
         <div class="logo">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo" width="225">
+            <img src="{{ asset('photo/logo.png') }}" alt="Logo" width="225">
         </div>
         <div class="auth-links">
             <a href="{{ route('register') }}" class="auth-link active">Sign up</a>

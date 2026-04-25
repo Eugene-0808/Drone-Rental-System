@@ -34,7 +34,7 @@ class LoginController extends Controller
         if (Auth::attempt($request->only('email', 'password'), $request->filled('remember'))) {
             // Check the role AFTER login to redirect
             if (Auth::user()->role === 'admin') {
-                return redirect()->intended('/admin');
+                return redirect()->intended('/products');
             }
             return redirect()->intended('/home');
         }

@@ -13,7 +13,7 @@
     <!-- Header -->
     <div class="header">
         <div class="logo">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo" width="225">
+            <img src="{{ asset('photo/logo.png') }}" alt="Logo" width="225">
         </div>
         <div class="auth-links">
             <a href="{{ route('register') }}" class="auth-link">Sign up</a>
@@ -89,6 +89,14 @@
                     </div>
 
                     <div class="form-options">
+                        <div class="remember-me">
+                            <input 
+                                type="checkbox" 
+                                id="remember" 
+                                name="remember" 
+                                {{ old('remember') ? 'checked' : '' }}>
+                            <label for="remember">Remember me</label>
+                        </div>
                         <a href="{{ route('password.request') }}" class="forgot-password">
                             Forgot Password?
                         </a>

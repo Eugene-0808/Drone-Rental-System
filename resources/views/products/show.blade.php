@@ -5,10 +5,10 @@
 @section('content')
 <div class="product-detail-page">
     <div class="detail-container">
-        <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_name }}">
+        <img src="{{ asset('photo/' . basename($product->product_image)) }}" alt="{{ $product->product_name }}">
         <div class="detail-info">
             <h2>{{ $product->product_name }}</h2>
-            <p>{{ $product->product_description }}</p>
+            <p>{!! $product->product_description !!}</p>
             <p class="price">RM{{ $product->product_price }}/day</p>
 
             <form action="{{ route('cart.add') }}" method="POST">

@@ -1,39 +1,41 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Drone FY</title>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    {{-- Your CSS --}}
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/contact.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/history.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- Friend's CSS (keep what they added) --}}
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/details.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/productPage.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 
-    <!-- Fonts -->
+    {{-- Fonts --}}
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/details.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/productPage.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/cart.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/header.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/footer.css') }}" rel="stylesheet">
-
+    {{-- Scripts --}}
+    <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 <body>
-    @include('partials.header')
+    <div class="page-wrap">
+        @include('partials.header')
 
-    <main class="py-4">
-        @yield('content')
-    </main>
+        <main>
+            @yield('content')
+        </main>
 
-    @include('partials.footer')
-    
-    <script src="{{ asset('js/app.js') }}" defer></script>
+        @include('partials.footer')
+    </div>
 </body>
 </html>

@@ -2,9 +2,9 @@
     $user = Auth::user();
     $is_logged_in = Auth::check();
     $user_id = $is_logged_in ? $user->id : null;
-    $full_name = $is_logged_in ? $user->name : null;
+    $full_name = $is_logged_in ? $user->full_name : null;
 
-    // Cart count for the logged-in user
+    
     $cart_count = 0;
     if ($user_id) {
         try {
@@ -18,7 +18,7 @@
     }
 @endphp
 
-<link rel="stylesheet" href="{{ asset('css/header.css') }}">
+
 
 <header class="dfy-header">
   <div class="dfy-topbar">
@@ -43,7 +43,7 @@
         <a class="dfy-login" href="{{ route('login') }}">Log In</a>
       @endif
 
-      <button class="dfy-menu-btn" type="button" aria-expanded="false" aria-controls="dfy-links"
+      <button class="dfy-menu-btn" type="button" aria-expanded="false" aria-controls="dfy-links" 
       onclick="(function(btn){var el=document.getElementById('dfy-links');var open=el.classList.toggle('open');
       btn.setAttribute('aria-expanded', open?'true':'false');})(this)">☰</button>
     </div>
@@ -51,7 +51,7 @@
 
   <nav id="dfy-links" class="dfy-botnav">
     <a href="{{ url('/') }}">Home</a>
-    <a href="{{ route('products.index') }}">Product</a>
+    <a href="#">Product</a>
     <a href="{{ route('contact.form') }}">Contact Us</a>
     @if ($is_logged_in)
       <a href="{{ route('purchase.history') }}">History</a>

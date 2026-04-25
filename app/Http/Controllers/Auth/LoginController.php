@@ -20,15 +20,15 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        
+
         return view('auth.login');
     }
     // Single login method for User and Admin
     public function login(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'required|string|email',
-            'password' => 'required|min:6'
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
 
         if (Auth::attempt($request->only('email', 'password'), $request->filled('remember'))) {
@@ -39,7 +39,6 @@ class LoginController extends Controller
             return redirect()->intended('/home');
         }
 
-        return back()->withInput($request->only('email', 'remember'))
-            ->withErrors(['email' => 'Invalid credentials.']);
+        return back()->withErrors(['email' => 'Invalid credentials.']);
     }
 }

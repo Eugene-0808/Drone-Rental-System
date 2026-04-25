@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <!-- Laravel asset -->
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
+
 <body>
 
     <!-- Header -->
@@ -69,22 +71,13 @@
 
                     <div class="form-group">
                         <label class="form-label">Email:</label>
-                        <input 
-                            type="email" 
-                            class="form-input" 
-                            name="email" 
-                            value="{{ old('email') }}"
-                            placeholder="Enter your email" 
-                            required>
+                        <input type="email" class="form-input" name="email" value="{{ old('email') }}"
+                            placeholder="Enter your email" required>
                     </div>
 
                     <div class="form-group password-input">
                         <label class="form-label">Password:</label>
-                        <input 
-                            type="password" 
-                            class="form-input" 
-                            name="password" 
-                            placeholder="Enter your password" 
+                        <input type="password" class="form-input" name="password" placeholder="Enter your password"
                             required>
                     </div>
 
@@ -121,7 +114,7 @@
 
     <!-- Simple validation (optional) -->
     <script>
-        document.querySelector('.login-form').addEventListener('submit', function(e) {
+        document.querySelector('.login-form').addEventListener('submit', function (e) {
             const email = this.email.value.trim();
             const password = this.password.value;
 
@@ -138,4 +131,5 @@
     </script>
 
 </body>
+
 </html>

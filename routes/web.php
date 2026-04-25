@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ForgotPasswordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -10,6 +11,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,15 +34,20 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-// Static pages (yours)
-Route::view('/tos', 'tos')->name('tos');
-Route::view('/privacy', 'privacy')->name('privacy');
 
 // Friend's product routes (no auth needed)
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 
-// Authenticated routes (combined)
+// Admin CRUD routes for products
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/products/create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('/admin/products', [ProductController::class, 'store'])->name('products.store');
+    Route::get('/admin/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('/admin/products/{product}', [ProductController::class, 'update'])->name('products.update');
+    Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+});
+
 Route::middleware('auth')->group(function () {
     // Short profile route for header navigation
     Route::get('/profile', function () {
@@ -59,3 +67,24 @@ Route::middleware('auth')->group(function () {
     Route::delete('/cart/{cartItem}', [CartController::class, 'remove'])->name('cart.remove');
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 });
+
+Route::get('/contact', function () {
+    return view('contact');  // we'll create the view later
+})->name('contact');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/history', function () {
+        return view('history');
+    })->name('history.index');
+
+    Route::get('/profile', function () {
+        return view('profile');
+    })->name('profile');
+});
+Route::view('/tos', 'privacy_term_of_service.tos')->name('tos');
+Route::view('/privacy', 'privacy_term_of_service.privacy')->name('privacy');
+
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');

@@ -31,22 +31,12 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        // Find the user by email
-        $user = \App\Models\User::where('email', $request->email)->first();
-
-        if (!$user) {
-            return back()->withErrors(['email' => 'No account found with this email.']);
-        }
-
-        // Allow plain text password comparison (for old database)
-        // Also try Hash::check() in case some passwords are encrypted
-        if ($user->password === $request->password || \Illuminate\Support\Facades\Hash::check($request->password, $user->password)) {
-            // Log the user in (session)
-            \Illuminate\Support\Facades\Auth::login($user, $request->has('remember'));
-
-            session()->flash('success', 'Welcome back, ' . $user->full_name . '!');
-
-            return redirect()->intended(route('home'));
+        if (Auth::attempt($request->only('email', 'password'), $request->filled('remember'))) {
+            // Check the role AFTER login to redirect
+            if (Auth::user()->role === 'admin') {
+                return redirect()->intended('/products');
+            }
+            return redirect()->intended('/home');
         }
 
         return back()->withErrors(['email' => 'Invalid credentials.']);

@@ -25,28 +25,29 @@
                     <h3>Basic Info</h3>
 
                     <div class="form-row">
-                        <label for="full_name">Full Name *</label>
-                        <input type="text" id="full_name" name="full_name"
-                               value="{{ old('full_name', $user->full_name) }}" required>
-                        @error('full_name') <small class="err">{{ $message }}</small> @enderror
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name"
+                               value="{{ old('name', $user->name) }}" required>
+                        @error('name') <small class="err">{{ $message }}</small> @enderror
                     </div>
 
                     <div class="form-row">
                         <label for="email">Email (read-only)</label>
-                        <input type="email" id="email" value="{{ $user->email }}" readonly>
+                        <input type="email" id="email" name="email"
+                               value="{{ old('email', $user->email) }}" readonly>
                     </div>
 
                     <div class="form-row">
-                        <label for="phone">Phone *</label>
-                        <input type="text" id="phone" name="phone"
-                               value="{{ old('phone', $user->phone) }}" required>
-                        @error('phone') <small class="err">{{ $message }}</small> @enderror
+                        <label for="phone_number">Phone *</label>
+                        <input type="text" id="phone_number" name="phone_number"
+                               value="{{ old('phone_number', $user->phone_number ?? '') }}" required>
+                        @error('phone_number') <small class="err">{{ $message }}</small> @enderror
                     </div>
 
                     <div class="form-row">
                         <label for="address">Address</label>
                         <input type="text" id="address" name="address"
-                               value="{{ old('address', $user->address) }}">
+                               value="{{ old('address', $user->address ?? '') }}">
                     </div>
                 </div>
 

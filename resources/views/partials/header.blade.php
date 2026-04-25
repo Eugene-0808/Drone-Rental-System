@@ -2,7 +2,7 @@
     $user = Auth::user();
     $is_logged_in = Auth::check();
     $user_id = $is_logged_in ? $user->id : null;
-    $full_name = $is_logged_in ? $user->full_name : null;
+    $full_name = $is_logged_in ? $user->name : null;
 
     // Cart count for the logged-in user
     $cart_count = 0;

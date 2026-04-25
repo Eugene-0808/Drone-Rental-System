@@ -10,13 +10,11 @@
         @endif
 
         <div class="grid">
-            <!-- Basic Info -->
             <div class="col">
                 <h3>Basic Info</h3>
-
                 <div class="form-row">
                     <label>Full Name</label>
-                    <p>{{ $user->full_name }}</p>
+                    <p>{{ $user->name }}</p>
                 </div>
                 <div class="form-row">
                     <label>Email</label>
@@ -24,18 +22,15 @@
                 </div>
                 <div class="form-row">
                     <label>Phone</label>
-                    <p>{{ $user->phone ?? 'Not provided' }}</p>
+                    <p>{{ $user->phone_number ?? 'Not provided' }}</p>
                 </div>
                 <div class="form-row">
                     <label>Address</label>
                     <p>{{ $user->address ?? 'Not provided' }}</p>
                 </div>
             </div>
-
-            <!-- Additional Details -->
             <div class="col">
                 <h3>Additional Details</h3>
-
                 <div class="form-row">
                     <label>Gender</label>
                     <p>{{ $profileDetail->gender ?? '—' }}</p>
@@ -52,7 +47,6 @@
                     <label>Date of Birth</label>
                     <p>{{ $profileDetail->dob ?? '—' }}</p>
                 </div>
-
                 @can('update-profile', $user)
                 <div class="form-actions">
                     <a href="{{ route('profile.edit') }}" class="btn primary">Edit Profile</a>

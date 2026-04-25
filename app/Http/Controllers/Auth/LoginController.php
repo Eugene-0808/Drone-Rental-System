@@ -36,7 +36,7 @@ class LoginController extends Controller
             if (Auth::user()->role === 'admin') {
                 return redirect()->intended('/products');
             }
-            return redirect()->intended('/home');
+            return redirect()->intended('/');
         }
 
         return back()->withErrors(['email' => 'Invalid credentials.']);

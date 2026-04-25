@@ -68,19 +68,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 });
 
-Route::get('/contact', function () {
-    return view('contact');  // we'll create the view later
-})->name('contact');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/history', function () {
-        return view('history');
-    })->name('history.index');
 
-    Route::get('/profile', function () {
-        return view('profile');
-    })->name('profile');
-});
+Route::get('/history', function () {
+    return view('history');
+})->name('history.index');
 Route::view('/tos', 'privacy_term_of_service.tos')->name('tos');
 Route::view('/privacy', 'privacy_term_of_service.privacy')->name('privacy');
 
@@ -88,3 +80,6 @@ Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestF
 Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
 Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+Route::get('/profile/setup-form', [ProfileController::class, 'showSetupForm'])->name('profile.setup.form');
+Route::post('/profile/setup-form', [ProfileController::class, 'postSetup'])->name('profile.setup.post');

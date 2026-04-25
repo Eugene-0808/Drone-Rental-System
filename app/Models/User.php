@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Models\Order;
-use App\Models\ProfileDetail;
 
 class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $table = 'users';
+    protected $primaryKey = 'id';
+    public $timestamps = false;
 
     protected $fillable = [
         'full_name',
@@ -18,26 +19,29 @@ class User extends Authenticatable
         'password',
         'phone',
         'address',
+        'role',
     ];
-
 
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
+    // Your orders relationship (checkout table uses 'id' column to reference user)
     public function orders()
     {
-        return $this->hasMany(Order::class, 'user_id');
+        return $this->hasMany(Order::class, 'id');
     }
 
+    // Your profile detail relationship
     public function profileDetail()
-{
-    return $this->hasOne(ProfileDetail::class, 'user_id');
-}
-    protected $primaryKey = 'id';
+    {
+        return $this->hasOne(ProfileDetail::class, 'user_id');
+    }
 
-
-    public $timestamps = false;
-
+    // Friend's cart relationship
+    public function cart()
+    {
+        return $this->hasOne(Cart::class)->latestOfMany();
+    }
 }

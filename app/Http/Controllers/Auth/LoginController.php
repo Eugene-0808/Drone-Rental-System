@@ -20,26 +20,35 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        
+
         return view('auth.login');
     }
     // Single login method for User and Admin
     public function login(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'required|string|email',
-            'password' => 'required|min:6'
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
 
-        if (Auth::attempt($request->only('email', 'password'), $request->filled('remember'))) {
-            // Check the role AFTER login to redirect
-            if (Auth::user()->role === 'admin') {
-                return redirect()->intended('/admin');
-            }
-            return redirect()->intended('/home');
+        // Find the user by email
+        $user = \App\Models\User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return back()->withErrors(['email' => 'No account found with this email.']);
         }
 
-        return back()->withInput($request->only('email', 'remember'))
-            ->withErrors(['email' => 'Invalid credentials.']);
+        // Allow plain text password comparison (for old database)
+        // Also try Hash::check() in case some passwords are encrypted
+        if ($user->password === $request->password || \Illuminate\Support\Facades\Hash::check($request->password, $user->password)) {
+            // Log the user in (session)
+            \Illuminate\Support\Facades\Auth::login($user, $request->has('remember'));
+
+            session()->flash('success', 'Welcome back, ' . $user->full_name . '!');
+
+            return redirect()->intended(route('home'));
+        }
+
+        return back()->withErrors(['email' => 'Invalid credentials.']);
     }
 }

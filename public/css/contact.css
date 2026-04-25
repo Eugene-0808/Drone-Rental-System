@@ -1,0 +1,82 @@
+.contact-hero {
+  min-height: calc(100vh + 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('../photo/contact-bg.jpg') center/cover no-repeat;
+  padding: 20px;
+}
+
+.contact-card {
+  max-width: 700px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.6); 
+  backdrop-filter: blur(8px);   /* making the backgroud blur */
+  -webkit-backdrop-filter: blur(8px); 
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.15);
+}
+
+.contact-card h1 { 
+  margin-bottom: 12px; 
+}
+
+.form-row { 
+  margin-bottom: 12px; 
+}
+
+label {
+  display:block; margin-bottom: 5px; 
+  }
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+textarea { 
+  resize: vertical; 
+}
+
+.alert { 
+  padding: 8px; 
+  border-radius: 6px; 
+  margin-bottom: 12px; 
+}
+
+.alert.success { 
+  background:#e9f8ec; 
+  color:#146b1f; 
+}
+
+.alert.error { 
+  background:#fdeaea; 
+  color:#8a1f1f; 
+}
+
+.err { 
+  color:#b21; 
+  font-size: 13px; 
+}
+
+.form-actions { 
+  margin-top: 14px; 
+}
+.btn {
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  margin-right: 6px;
+}
+.btn.primary { 
+  background:#3478f6; 
+  color:#fff;
+}
+
+.btn.ghost {
+  border:1px solid #ccc; 
+  color:#333; 
+}

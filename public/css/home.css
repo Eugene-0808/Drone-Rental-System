@@ -1,0 +1,247 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #222;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Trebuchet MS', Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+.container { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 0 20px; 
+}
+
+.sec-title { 
+  font-size: 22px; 
+  margin: 28px 0 16px; 
+}
+
+/* ---------- HERO---------- */
+.hero {
+  position: relative;
+  display: block;
+  height: 500px;
+  color: #fff;
+  text-decoration: none;
+  overflow: hidden;
+  background: #111;
+}
+
+.hero-overlay {
+  position: absolute; 
+  inset: 0;
+  background: rgba(0,0,0,0.35);       
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center;
+  text-align: center; 
+  padding: 0 16px; 
+  z-index: 5;
+}
+
+.hero-overlay h1 { 
+  margin: 0 0 6px; 
+  font-size: 75px; 
+  letter-spacing: .5px; 
+}
+
+.hero-overlay p { 
+  margin: 0 0 12px; 
+  color: #e6e6e6; 
+}
+
+.hero-cta { 
+  display: inline-block; 
+  padding: 8px 12px; 
+  border-radius: 8px; 
+  background: rgba(255,255,255,.12);
+ }
+
+.hero:hover .hero-cta { 
+  background: rgba(255,255,255,.18); 
+}
+
+.hero-bg { 
+  position: absolute; 
+  inset: 0; 
+  background-size: cover; 
+  background-position: center; 
+  opacity: 0; 
+}
+
+.bg1 { 
+  background-image: url('../photo/hero1.jpg'); 
+  animation: show1 11s infinite; 
+}
+
+.bg2 { 
+  background-image: url('../photo/hero2.jpg'); 
+  animation: show2 45s infinite; 
+}
+
+.bg3 { 
+  background-image: url('../photo/hero3.jpg'); 
+  animation: show3 14s infinite; 
+}
+
+
+@keyframes show1 {
+  0%{opacity:1} 
+  27%{opacity:1} 
+  33%{opacity:0} 
+  94%{opacity:0} 
+  100%{opacity:1}
+}
+@keyframes show2 {
+  0%{opacity:0} 
+  33%{opacity:1} 
+  60%{opacity:1} 
+  66%{opacity:0} 
+  100%{opacity:0}
+}
+@keyframes show3 {
+  0%{opacity:0} 
+  66%{opacity:0} 
+  67%{opacity:1} 
+  94%{opacity:1} 
+  100%{opacity:0}
+}
+
+/* just dots */
+.hero-dots { 
+  position: absolute; 
+  left: 50%; 
+  bottom: 12px; 
+  transform: translateX(-50%); 
+  display: flex; 
+  gap: 6px; 
+  z-index: 6; 
+}
+
+.hero-dots span { 
+  width: 6px; 
+  height: 6px; 
+  border-radius: 50%; 
+  background: rgba(255,255,255,.6); 
+}
+
+
+/* ---------- ABOUT US ---------- */
+.about { 
+  display: grid; 
+  grid-template-columns: 1.1fr .9fr; 
+  gap: 18px; 
+  align-items: center; 
+  padding: 28px 0; 
+}
+
+.about h2 { 
+  font-size: 50px; 
+  line-height: 1.2; 
+  margin: 0 0 8px; 
+}
+
+.about p { 
+  font-size:18px; 
+  margin: 6px 0; 
+  color: #444; 
+  line-height: 1.6; 
+}
+
+.about-img img { 
+  width: 100%; 
+  height: auto; 
+  border-radius: 12px; 
+  display: block; 
+}
+
+.fade-in { 
+  animation: fadeIn 0.9s ease both; 
+}
+
+@keyframes fadeIn { 
+  from{opacity:0; transform: translateY(8px)} 
+  to{opacity:1; transform:none} 
+}
+
+/* ---------- FEEDBACK ---------- */
+.fb-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 12px; }
+
+.fb-card { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 12px; }
+
+.fb-card h4 { margin: 8px 0 6px; }
+
+.fb-card p { margin: 0; color: #555; line-height: 1.5; }
+
+.avatar { width: 36px; height: 36px; border-radius: 50%; background: #3478f6; color: #fff; display:flex; align-items:center; justify-content:center; }
+
+/* ---------- SLOGAN / CTA ---------- */
+.slogan { background: #0f1113; 
+  color: #fff; padding: 24px 0; 
+  margin-top: 24px; 
+  text-align: center; 
+}
+
+.slogan h2 { 
+  margin: 0 0 12px; 
+  font-size: 24px; 
+}
+
+.cta-row { 
+  display: inline-flex; 
+  gap: 10px; 
+}
+
+.btn { 
+  display:inline-block; 
+  padding:10px 14px; 
+  border-radius:8px; 
+  text-decoration:none; 
+}
+
+.btn.primary { 
+  background:#3478f6; 
+  color:#fff; 
+}
+
+.btn.primary:hover { 
+  filter:brightness(1.05); 
+}
+
+.btn.ghost { 
+  border:1px solid #fff; 
+  color:#fff; 
+}
+
+/* ---------- Responsive Web Design ---------- */
+@media (max-width: 900px){
+  .fb-grid { 
+    grid-template-columns: repeat(2, minmax(0,1fr)); 
+  }
+  .about { 
+    grid-template-columns: 1fr; 
+  }
+  .hero { 
+    height: 380px; 
+  }
+}
+
+@media (max-width: 560px){
+  .fb-grid { 
+    grid-template-columns: 1fr; 
+  }
+
+  .hero { 
+    height: 280px; 
+  }
+  
+  .hero-overlay h1 { 
+    font-size: 24px; 
+  }
+}

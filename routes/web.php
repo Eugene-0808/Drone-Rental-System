@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -33,3 +35,27 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
 
 Route::view('/tos', 'tos')->name('tos');
 Route::view('/privacy', 'privacy')->name('privacy');
+
+Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/add', [CartController::class, 'add'])->name('cart.add');
+    Route::delete('/cart/{cartItem}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+});
+
+Route::get('/contact', function () {
+    return view('contact');  // we'll create the view later
+})->name('contact');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/history', function () {
+        return view('history');
+    })->name('history.index');
+
+    Route::get('/profile', function () {
+        return view('profile');
+    })->name('profile');
+});

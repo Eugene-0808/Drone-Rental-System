@@ -18,4 +18,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token', 
     ];
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class)->latestOfMany(); // or just hasOne if only one cart
+    }
+    
 }
